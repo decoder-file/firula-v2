@@ -22,4 +22,14 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return { user }
   }
+
+  async findByCpf(cpf: string) {
+    const user = await prisma.user.findUnique({
+      where: {
+        cpf,
+      },
+    })
+
+    return { user }
+  }
 }
