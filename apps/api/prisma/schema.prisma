@@ -13,14 +13,144 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  OWNER
+  SECRETARY
+  PROFESSOR
+  CUSTOMER
+}
+
 model User {
-  id           String   @id @default(uuid())
+  id           String  @id @default(uuid())
   name         String?
-  email        String   @unique
-  cpf          String   @unique
-  passwordHash String   @map("password_hash")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  email        String  @unique
+  cpf          String  @unique
+  role         Role    @default(CUSTOMER)
+  isBlock      Boolean @default(false) @map("is_block")
+  iamgeUrl     String? @map("image_url")
+  passwordHash String  @map("password_hash")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  UserProfile UserProfile[]
+  UserAddress UserAddress[]
+  Company     Company[]
 
   @@map("users")
+}
+
+model UserProfile {
+  id          String   @id @default(uuid())
+  mobilePhone String   @map("mobile_phone")
+  dateOfBirth DateTime @map("date_of_birth")
+  walletId    String?  @map("wallet_id")
+  apiKey      String?  @map("api_key")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("user_profile")
+}
+
+model UserAddress {
+  id           String  @id @default(uuid())
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  zipCode      String  @map("zip_code")
+  isMain       Boolean @default(true) @map("is_main")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("user_address")
+}
+
+model Company {
+  id           String  @id @default(uuid())
+  name         String
+  slug         String  @unique
+  cpf_cnpj     String  @map("cpf_cnpj")
+  typeDocument String  @map("type_document")
+  mobilePhone  String  @map("mobile_phone")
+  imageUrl     String? @map("image_url")
+  isActive     Boolean @default(true) @map("is_active")
+  walletId     String? @map("wallet_id")
+  apiKey       String? @map("api_key")
+  isBlock      Boolean @default(false) @map("is_block")
+  companyType  String? @map("company_type")
+  incomeValue  String? @map("income_value")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  CompanyAddress     CompanyAddress[]
+  CompanyOpeningHour CompanyOpeningHour[]
+}
+
+model CompanyAddress {
+  id           String  @id @default(uuid())
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  zipCode      String  @map("zip_code")
+  isMain       Boolean @default(true) @map("is_main")
+
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId String  @map("company_id")
+
+  @@map("company_address")
+}
+
+model TypeBlock {
+  id   String @id @default(uuid())
+  name String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  CompanyBlock CompanyBlock[]
+}
+
+model CompanyBlock {
+  id   String @id @default(uuid())
+  name String
+
+  valueForHour String  @map("value_for_hour")
+  imageUrl     String  @map("image_url")
+  isActive     Boolean @default(true) @map("is_active")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  TypeBlock   TypeBlock? @relation(fields: [typeBlockId], references: [id])
+  typeBlockId String?    @map("type_block_id")
+
+  @@map("company_block")
+}
+
+model CompanyOpeningHour {
+  id        String   @id @default(uuid())
+  dayOfWeek String   @map("day_of_week")
+  openAt    DateTime @map("open_at")
+  closeAt   DateTime @map("close_at")
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId String  @map("company_id")
+
+  @@map("company_opening_hour")
 }
