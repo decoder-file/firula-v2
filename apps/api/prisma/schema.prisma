@@ -28,7 +28,7 @@ model User {
   cpf          String  @unique
   role         Role    @default(CUSTOMER)
   isBlock      Boolean @default(false) @map("is_block")
-  iamgeUrl     String? @map("image_url")
+  imageUrl     String? @map("image_url")
   passwordHash String  @map("password_hash")
 
   createdAt DateTime @default(now()) @map("created_at")

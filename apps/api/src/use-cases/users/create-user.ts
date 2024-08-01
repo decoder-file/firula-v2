@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { Role, User } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
 import { UsersRepository } from '@/repositories/users-repository'
@@ -13,6 +13,7 @@ interface CreateUserUseCaseRequest {
   email: string
   cpf: string
   passwordHash: string
+  role?: Role
 }
 
 interface CreateUserUseCaseResponse {
@@ -27,6 +28,7 @@ export class CreateUserUseCase {
     email,
     cpf,
     passwordHash,
+    role,
   }: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
     const isInValidCpf = validateCPF(cpf)
 
@@ -52,6 +54,7 @@ export class CreateUserUseCase {
       name,
       email,
       cpf,
+      role,
       passwordHash: password,
     })
 
