@@ -8,4 +8,5 @@ export interface UsersRepository {
   update(data: Prisma.UserUpdateInput, userId: string): Promise<User | null>
   delete(userId: string): Promise<boolean>
   getUserById(userId: string): Promise<User | null>
+  getAllUsers(): Promise<User[]>
 }

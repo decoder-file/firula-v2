@@ -8,7 +8,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   async create(data: Prisma.UserCreateInput): Promise<User> {
     const user: User = {
       id: 'user-1',
-      name: data.name || null,
+      name: data.name,
       email: data.email,
       cpf: data.cpf,
       role: data.role || ('USER' as Role),
@@ -108,5 +108,9 @@ export class InMemoryUsersRepository implements UsersRepository {
     }
 
     return user
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return this.items
   }
 }
