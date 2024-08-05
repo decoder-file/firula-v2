@@ -22,4 +22,28 @@ export class PrismaUserProfileRepository implements UserProfileRepository {
 
     return user
   }
+
+  async findById(id: string): Promise<UserProfile | null> {
+    const user = await prisma.userProfile.findFirst({
+      where: {
+        id,
+      },
+    })
+
+    return user
+  }
+
+  async update(
+    data: Prisma.UserProfileUncheckedUpdateInput,
+    id: string,
+  ): Promise<UserProfile> {
+    const user = await prisma.userProfile.update({
+      where: {
+        id,
+      },
+      data,
+    })
+
+    return user
+  }
 }
