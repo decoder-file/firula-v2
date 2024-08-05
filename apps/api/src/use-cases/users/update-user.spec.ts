@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 
-import { UserNotExistsError } from '../errors/users/user-already-exists-error copy'
+import { UserNotFound } from '../errors/users/user-not-found'
 import { CreateUserUseCase } from './create-user'
 import { UpdateUserUseCase } from './update-user'
 
@@ -38,6 +38,6 @@ describe('Update Use Case', () => {
         name: 'John',
         role: 'ADMIN',
       }),
-    ).rejects.toBeInstanceOf(UserNotExistsError)
+    ).rejects.toBeInstanceOf(UserNotFound)
   })
 })

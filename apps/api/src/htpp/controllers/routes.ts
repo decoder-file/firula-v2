@@ -6,6 +6,7 @@ import { deleteUser } from './users/delete-user.controller'
 import { getAllUsers } from './users/get-all-users.controller'
 import { getUserByIdUser } from './users/get-user-by-id.controller'
 import { updateUser } from './users/update-user.controller'
+import { createUserProfile } from './users/userProfile/create-user-profile.controller'
 
 export async function appRoutes(app: FastifyInstance) {
   // user
@@ -15,4 +16,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.get('/users', getUserByIdUser)
   app.get('/users/all', getAllUsers)
   app.post('/users/change-lock', changeUserLockByIdUser)
+
+  // userProfile
+  app.post('/user-profile', createUserProfile)
 }

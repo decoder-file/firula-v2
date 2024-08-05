@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 
-import { UserNotExistsError } from '../errors/users/user-already-exists-error copy'
+import { UserNotFound } from '../errors/users/user-not-found'
 import { ChangeUserLockUseCase } from './change-user-lock'
 import { CreateUserUseCase } from './create-user'
 
@@ -32,6 +32,6 @@ describe('Change user lock Use Case', () => {
 
     expect(() =>
       changeUserLockUseCase.execute({ userId: '3214124' }),
-    ).rejects.toBeInstanceOf(UserNotExistsError)
+    ).rejects.toBeInstanceOf(UserNotFound)
   })
 })

@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-import { UserNotExistsError } from '@/use-cases/errors/users/user-already-exists-error copy'
+import { UserNotFound } from '@/use-cases/errors/users/user-not-found'
 import { makeChangeUserLockUseCase } from '@/use-cases/factories/users/make-change-user-lock-use-case'
 
 export async function changeUserLockByIdUser(
@@ -21,7 +21,7 @@ export async function changeUserLockByIdUser(
 
     return reply.status(201).send({ user })
   } catch (err) {
-    if (err instanceof UserNotExistsError) {
+    if (err instanceof UserNotFound) {
       return reply.status(409).send({ message: err.message })
     }
 

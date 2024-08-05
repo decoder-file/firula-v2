@@ -2,7 +2,7 @@ import { Role, User } from '@prisma/client'
 
 import { UsersRepository } from '@/repositories/users-repository'
 
-import { UserNotExistsError } from '../errors/users/user-already-exists-error copy'
+import { UserNotFound } from '../errors/users/user-not-found'
 
 interface UpdateUserUseCaseRequest {
   userId: string
@@ -29,7 +29,7 @@ export class UpdateUserUseCase {
     const userData = await this.userUsesRepository.findById(userId)
 
     if (!userData.user) {
-      throw new UserNotExistsError()
+      throw new UserNotFound()
     }
 
     const userUpdate = await this.userUsesRepository.update(

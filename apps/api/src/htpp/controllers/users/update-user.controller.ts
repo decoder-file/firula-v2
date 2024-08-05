@@ -2,7 +2,7 @@ import { Role } from '@prisma/client'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-import { UserNotExistsError } from '@/use-cases/errors/users/user-already-exists-error copy'
+import { UserNotFound } from '@/use-cases/errors/users/user-not-found'
 import { makeUpdateUserUseCase } from '@/use-cases/factories/users/make-update-user-use-case'
 
 export async function updateUser(request: FastifyRequest, reply: FastifyReply) {
@@ -34,7 +34,7 @@ export async function updateUser(request: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send({ userId: response.user?.id })
   } catch (err) {
-    if (err instanceof UserNotExistsError) {
+    if (err instanceof UserNotFound) {
       return reply.status(409).send({ message: err.message })
     }
 

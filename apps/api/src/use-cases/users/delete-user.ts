@@ -1,6 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository'
 
-import { UserNotExistsError } from '../errors/users/user-already-exists-error copy'
+import { UserNotFound } from '../errors/users/user-not-found'
 
 interface DeleteUserUseCaseRequest {
   userId: string
@@ -19,7 +19,7 @@ export class DeleteUserUseCase {
     const { user } = await this.userUsesRepository.findById(userId)
 
     if (!user) {
-      throw new UserNotExistsError()
+      throw new UserNotFound()
     }
 
     await this.userUsesRepository.delete(userId)

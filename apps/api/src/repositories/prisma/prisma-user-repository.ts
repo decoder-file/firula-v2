@@ -69,13 +69,24 @@ export class PrismaUsersRepository implements UsersRepository {
       where: {
         id: userId,
       },
+      include: {
+        UserAddress: true,
+        Company: true,
+        UserProfile: true,
+      },
     })
 
     return user
   }
 
   async getAllUsers() {
-    const users = await prisma.user.findMany()
+    const users = await prisma.user.findMany({
+      include: {
+        UserAddress: true,
+        Company: true,
+        UserProfile: true,
+      },
+    })
 
     return users
   }
