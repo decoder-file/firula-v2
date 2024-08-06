@@ -6,6 +6,10 @@ import { deleteUser } from './users/delete-user.controller'
 import { getAllUsers } from './users/get-all-users.controller'
 import { getUserByIdUser } from './users/get-user-by-id.controller'
 import { updateUser } from './users/update-user.controller'
+import { createUserAddress } from './users/userAddress/create-user-address.controller'
+import { deleteUserAddress } from './users/userAddress/delete-user-address.controller'
+import { getUserAddress } from './users/userAddress/get-user-address.controller'
+import { updateUserAddress } from './users/userAddress/update-user-address.controller'
 import { createUserProfile } from './users/userProfile/create-user-profile.controller'
 import { getUserProfile } from './users/userProfile/get-user-profile.controller'
 import { updateUserProfile } from './users/userProfile/update-user-profile.controller'
@@ -23,4 +27,10 @@ export async function appRoutes(app: FastifyInstance) {
   app.post('/user-profile', createUserProfile)
   app.patch('/user-profile', updateUserProfile)
   app.get('/user-profile', getUserProfile)
+
+  // userAddress
+  app.post('/user-address', createUserAddress)
+  app.patch('/user-address', updateUserAddress)
+  app.get('/user-address', getUserAddress)
+  app.delete('/user-address', deleteUserAddress)
 }
