@@ -1,5 +1,10 @@
 import { FastifyInstance } from 'fastify'
 
+import { createCompany } from './company/create-company.controller'
+import { getAllCompany } from './company/get-all-company.controller'
+import { getCompanyById } from './company/get-company-by-id.controller'
+import { getCompanyByUserId } from './company/get-company-by-user-id.controller'
+import { updateCompany } from './company/update-company.controller'
 import { changeUserLockByIdUser } from './users/change-user-lock.controller'
 import { createUser } from './users/create-user.controller'
 import { deleteUser } from './users/delete-user.controller'
@@ -33,4 +38,11 @@ export async function appRoutes(app: FastifyInstance) {
   app.patch('/user-address', updateUserAddress)
   app.get('/user-address', getUserAddress)
   app.delete('/user-address', deleteUserAddress)
+
+  // company
+  app.post('/company', createCompany)
+  app.patch('/company', updateCompany)
+  app.get('/company/companyId', getCompanyById)
+  app.get('/company/userId', getCompanyByUserId)
+  app.get('/company', getAllCompany)
 }
