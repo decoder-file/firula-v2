@@ -3,7 +3,8 @@ import { Company } from '@prisma/client'
 import { CompanyRepository } from '@/repositories/company-repository'
 
 interface GetAllCompanyUseCaseRequest {
-  active?: string
+  unblockedCompanies?: string
+  activeCompanies?: string
 }
 
 interface GetAllCompanyUseCaseResponse {
@@ -14,10 +15,13 @@ export class GetAllCompanyUseCase {
   constructor(private companyRepository: CompanyRepository) {}
 
   async execute({
-    active,
+    unblockedCompanies,
+    activeCompanies,
   }: GetAllCompanyUseCaseRequest): Promise<GetAllCompanyUseCaseResponse> {
-    console.log('active', active)
-    const company = await this.companyRepository.listAll(active)
+    const company = await this.companyRepository.listAll(
+      unblockedCompanies,
+      activeCompanies,
+    )
 
     return { company }
   }

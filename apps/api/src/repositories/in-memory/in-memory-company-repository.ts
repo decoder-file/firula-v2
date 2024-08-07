@@ -87,7 +87,24 @@ export class InMemoryCompanyRepository implements CompanyRepository {
     return company
   }
 
-  async listAll(): Promise<Company[]> {
+  async listAll(
+    unblockedCompanies?: string,
+    activeCompanies?: string,
+  ): Promise<Company[]> {
+    if (unblockedCompanies) {
+      return this.items.filter((item) => item.isBlock === false)
+    }
+
+    if (activeCompanies) {
+      return this.items.filter((item) => item.isActive === true)
+    }
+
+    if (unblockedCompanies && activeCompanies) {
+      return this.items.filter(
+        (item) => item.isBlock === false && item.isActive === true,
+      )
+    }
+
     return this.items
   }
 

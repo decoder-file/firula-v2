@@ -38,11 +38,28 @@ export class PrismaCompanyRepository implements CompanyRepository {
     })
   }
 
-  async listAll(active?: string) {
-    if (active) {
+  async listAll(unblockedCompanies?: string, activeCompanies?: string) {
+    if (unblockedCompanies) {
       return prisma.company.findMany({
         where: {
           isBlock: false,
+        },
+      })
+    }
+
+    if (activeCompanies) {
+      return prisma.company.findMany({
+        where: {
+          isActive: true,
+        },
+      })
+    }
+
+    if (unblockedCompanies && activeCompanies) {
+      return prisma.company.findMany({
+        where: {
+          isBlock: false,
+          isActive: true,
         },
       })
     }

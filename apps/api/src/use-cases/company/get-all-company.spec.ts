@@ -35,7 +35,7 @@ describe('Get All Company Use Case', () => {
       userId: user.id,
     })
 
-    const allCompany = await getCompanyByIdUseCase.execute()
+    const allCompany = await getCompanyByIdUseCase.execute({})
 
     expect(allCompany.company).toEqual(expect.any(Array))
   })

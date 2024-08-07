@@ -5,6 +5,9 @@ export interface CompanyRepository {
   findById(companyId: string): Promise<Company | null>
   update(data: Prisma.CompanyUncheckedUpdateInput, id: string): Promise<Company>
   delete(companyId: string): Promise<Company>
-  listAll(isActive?: string): Promise<Company[]>
+  listAll(
+    unblockedCompanies?: string,
+    activeCompanies?: string,
+  ): Promise<Company[]>
   findByUserId(userId: string): Promise<Company[]>
 }
