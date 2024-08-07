@@ -38,12 +38,15 @@ export class PrismaCompanyRepository implements CompanyRepository {
     })
   }
 
-  async listAll() {
-    return prisma.company.findMany({
-      where: {
-        isBlock: false,
-      },
-    })
+  async listAll(active?: string) {
+    if (active) {
+      return prisma.company.findMany({
+        where: {
+          isBlock: false,
+        },
+      })
+    }
+    return prisma.company.findMany()
   }
 
   async findByUserId(userId: string) {
