@@ -8,6 +8,11 @@ import { createCompany } from './company/create-company.controller'
 import { getAllCompany } from './company/get-all-company.controller'
 import { getCompanyById } from './company/get-company-by-id.controller'
 import { getCompanyByUserId } from './company/get-company-by-user-id.controller'
+import { createTypeBlock } from './company/typeBlock/create-type-block.controller'
+import { deleteTypeBlock } from './company/typeBlock/delete-type-block.controller'
+import { getAllTypeBlock } from './company/typeBlock/get-all-type-block.controller'
+import { getTypeByIdBlock } from './company/typeBlock/get-type-block-by-id.controller'
+import { updateTypeBlock } from './company/typeBlock/update-type-block.controller'
 import { updateCompany } from './company/update-company.controller'
 import { changeUserLockByIdUser } from './users/change-user-lock.controller'
 import { createUser } from './users/create-user.controller'
@@ -55,4 +60,11 @@ export async function appRoutes(app: FastifyInstance) {
   app.delete('/company-address', deleteCompanyAddress)
   app.get('/company-address', getCompanyAddress)
   app.patch('/company-address', updateCompanyAddress)
+
+  // typeBlock
+  app.post('/type-block', createTypeBlock)
+  app.patch('/type-block', updateTypeBlock)
+  app.delete('/type-block', deleteTypeBlock)
+  app.get('/type-block', getAllTypeBlock)
+  app.get('/type-block/id', getTypeByIdBlock)
 }
