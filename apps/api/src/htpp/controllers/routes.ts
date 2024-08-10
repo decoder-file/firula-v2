@@ -4,6 +4,10 @@ import { createCompanyAddress } from './company/companyAddress/create-company-ad
 import { deleteCompanyAddress } from './company/companyAddress/delete-company-address.controller'
 import { getCompanyAddress } from './company/companyAddress/get-company-address.controller'
 import { updateCompanyAddress } from './company/companyAddress/update-company-address.controller'
+import { createCompanyBlock } from './company/companyBlock/create-company-block.controller'
+import { deleteCompanyBlock } from './company/companyBlock/delete-company-block.controller'
+import { getCompanyBlockById } from './company/companyBlock/get-company-block.controller'
+import { updateCompanyBlock } from './company/companyBlock/update-company-block.controller'
 import { createCompany } from './company/create-company.controller'
 import { getAllCompany } from './company/get-all-company.controller'
 import { getCompanyById } from './company/get-company-by-id.controller'
@@ -67,4 +71,10 @@ export async function appRoutes(app: FastifyInstance) {
   app.delete('/type-block', deleteTypeBlock)
   app.get('/type-block', getAllTypeBlock)
   app.get('/type-block/id', getTypeByIdBlock)
+
+  // companyBlock
+  app.post('/company-block', createCompanyBlock)
+  app.patch('/company-block', updateCompanyBlock)
+  app.get('/company-block', getCompanyBlockById)
+  app.delete('/company-block', deleteCompanyBlock)
 }
