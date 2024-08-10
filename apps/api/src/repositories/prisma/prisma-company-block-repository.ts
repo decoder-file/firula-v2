@@ -41,4 +41,12 @@ export class PrismaCompanyBlockRepository implements CompanyBlockRepository {
   async listAll() {
     return prisma.companyBlock.findMany()
   }
+
+  async findBlockByCompanyId(companyId: string) {
+    return prisma.companyBlock.findMany({
+      where: {
+        companyId,
+      },
+    })
+  }
 }

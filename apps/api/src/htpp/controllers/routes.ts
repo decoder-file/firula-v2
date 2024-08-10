@@ -7,6 +7,7 @@ import { updateCompanyAddress } from './company/companyAddress/update-company-ad
 import { createCompanyBlock } from './company/companyBlock/create-company-block.controller'
 import { deleteCompanyBlock } from './company/companyBlock/delete-company-block.controller'
 import { getCompanyBlockById } from './company/companyBlock/get-company-block.controller'
+import { getCompanyBlockByCompanyId } from './company/companyBlock/get-company-block-by-company-id.controller'
 import { updateCompanyBlock } from './company/companyBlock/update-company-block.controller'
 import { createCompany } from './company/create-company.controller'
 import { getAllCompany } from './company/get-all-company.controller'
@@ -77,4 +78,5 @@ export async function appRoutes(app: FastifyInstance) {
   app.patch('/company-block', updateCompanyBlock)
   app.get('/company-block', getCompanyBlockById)
   app.delete('/company-block', deleteCompanyBlock)
+  app.get('/company-block/companyId', getCompanyBlockByCompanyId)
 }

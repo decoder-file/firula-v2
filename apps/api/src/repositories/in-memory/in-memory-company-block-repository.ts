@@ -15,6 +15,7 @@ export class InMemoryCompanyBlockRepository implements CompanyBlockRepository {
       createdAt: new Date(),
       updatedAt: new Date(),
       isActive: false,
+      companyId: 'company-1',
     }
 
     this.items.push(companyBlock)
@@ -85,5 +86,20 @@ export class InMemoryCompanyBlockRepository implements CompanyBlockRepository {
     }
 
     return this.items
+  }
+
+  async findBlockByCompanyId(
+    companyId: string,
+  ): Promise<CompanyBlock[] | null> {
+    console.log('this.items', this.items)
+    const companyBlocks = this.items.filter(
+      (item) => item.companyId === companyId,
+    )
+
+    if (!companyBlocks) {
+      return null
+    }
+
+    return companyBlocks
   }
 }

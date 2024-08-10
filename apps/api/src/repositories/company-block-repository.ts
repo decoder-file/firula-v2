@@ -12,4 +12,5 @@ export interface CompanyBlockRepository {
     unblockedCompanyBlocks?: string,
     activeCompanyBlocks?: string,
   ): Promise<CompanyBlock[]>
+  findBlockByCompanyId(companyId: string): Promise<CompanyBlock[] | null>
 }
