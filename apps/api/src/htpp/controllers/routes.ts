@@ -9,6 +9,10 @@ import { deleteCompanyBlock } from './company/companyBlock/delete-company-block.
 import { getCompanyBlockById } from './company/companyBlock/get-company-block.controller'
 import { getCompanyBlockByCompanyId } from './company/companyBlock/get-company-block-by-company-id.controller'
 import { updateCompanyBlock } from './company/companyBlock/update-company-block.controller'
+import { createCompanyOpeningHour } from './company/CompanyOpeningHour/create-company-opening-hour.controller'
+import { deleteCompanyOpeningHour } from './company/CompanyOpeningHour/delete-company-opening-hour.controller'
+import { getCompanyOpeningHourById } from './company/CompanyOpeningHour/get-company-opening-hour-by-id.controller'
+import { updateCompanyOpeningHour } from './company/CompanyOpeningHour/update-company-opening-hour.controller'
 import { createCompany } from './company/create-company.controller'
 import { getAllCompany } from './company/get-all-company.controller'
 import { getCompanyById } from './company/get-company-by-id.controller'
@@ -79,4 +83,10 @@ export async function appRoutes(app: FastifyInstance) {
   app.get('/company-block', getCompanyBlockById)
   app.delete('/company-block', deleteCompanyBlock)
   app.get('/company-block/companyId', getCompanyBlockByCompanyId)
+
+  // companyOpeningHour
+  app.post('/company-opening-hour', createCompanyOpeningHour)
+  app.patch('/company-opening-hour', updateCompanyOpeningHour)
+  app.get('/company-opening-hour', getCompanyOpeningHourById)
+  app.delete('/company-opening-hour', deleteCompanyOpeningHour)
 }

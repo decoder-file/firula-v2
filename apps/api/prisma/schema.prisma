@@ -145,10 +145,10 @@ model CompanyBlock {
 }
 
 model CompanyOpeningHour {
-  id        String   @id @default(uuid())
-  dayOfWeek String   @map("day_of_week")
-  openAt    DateTime @map("open_at")
-  closeAt   DateTime @map("close_at")
+  id        String @id @default(uuid())
+  dayOfWeek String @map("day_of_week")
+  openAt    String @map("open_at")
+  closeAt   String @map("close_at")
 
   updatedAt DateTime @updatedAt @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
