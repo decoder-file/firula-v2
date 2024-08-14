@@ -37,6 +37,7 @@ model User {
   UserProfile UserProfile[]
   UserAddress UserAddress[]
   Company     Company[]
+  Scheduling  Scheduling[]
 
   @@map("users")
 }
@@ -95,6 +96,7 @@ model Company {
   CompanyBlock       CompanyBlock[]
   CompanyAddress     CompanyAddress[]
   CompanyOpeningHour CompanyOpeningHour[]
+  Scheduling         Scheduling[]
 }
 
 model CompanyAddress {
@@ -141,6 +143,9 @@ model CompanyBlock {
   Company   Company? @relation(fields: [companyId], references: [id])
   companyId String?
 
+  companyBlockHour CompanyBlockHour[]
+  Scheduling       Scheduling[]
+
   @@map("company_block")
 }
 
@@ -157,4 +162,43 @@ model CompanyOpeningHour {
   companyId String  @map("company_id")
 
   @@map("company_opening_hour")
+}
+
+model CompanyBlockHour {
+  id        String   @id @default(uuid())
+  date      DateTime
+  startTime String
+  endTime   String
+  status    String   @default("busy")
+
+  companyBlockId String?
+
+  Scheduling   Scheduling[]
+  CompanyBlock CompanyBlock? @relation(fields: [companyBlockId], references: [id])
+
+  @@map("company_block_hour")
+}
+
+model Scheduling {
+  id            String   @id @default(uuid())
+  date          DateTime @default(now()) @db.Date
+  status        String   @default("PENDING")
+  paymentStatus String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId String  @map("company_id")
+
+  companyBlock   CompanyBlock @relation(fields: [companyBlockId], references: [id])
+  companyBlockId String       @map("company_block_id")
+
+  companyBlockHour   CompanyBlockHour @relation(fields: [companyBlockHourId], references: [id])
+  companyBlockHourId String           @map("company_block_hour_id")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("scheduling")
 }
