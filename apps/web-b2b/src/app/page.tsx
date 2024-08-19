@@ -3,7 +3,7 @@ export default function Home() {
     <>
       <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
-          <p>B2C Firula</p>
+          <p>B2B Firula</p>
           <h1 className="mt-4 text-xl font-bold tracking-tight sm:text-5xl">
             Plataforma em construção
           </h1>
