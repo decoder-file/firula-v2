@@ -181,7 +181,7 @@ model CompanyBlockHour {
 
 model Scheduling {
   id            String   @id @default(uuid())
-  date          DateTime @default(now()) @db.Date
+  date          DateTime
   status        String   @default("PENDING")
   paymentStatus String
 

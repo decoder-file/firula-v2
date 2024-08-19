@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "scheduling" ALTER COLUMN "date" DROP DEFAULT,
+ALTER COLUMN "date" SET DATA TYPE TIMESTAMP(3);

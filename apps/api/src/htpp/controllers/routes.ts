@@ -26,6 +26,7 @@ import { getAllTypeBlock } from './company/typeBlock/get-all-type-block.controll
 import { getTypeByIdBlock } from './company/typeBlock/get-type-block-by-id.controller'
 import { updateTypeBlock } from './company/typeBlock/update-type-block.controller'
 import { updateCompany } from './company/update-company.controller'
+import { createScheduling } from './scheduling/create-scheduling.controller'
 import { changeUserLockByIdUser } from './users/change-user-lock.controller'
 import { createUser } from './users/create-user.controller'
 import { deleteUser } from './users/delete-user.controller'
@@ -97,4 +98,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.post('/company-block-hour', createCompanyBlockHour)
   app.get('/company-block-hour', getAllCompanyBlockHour)
   app.delete('/company-block-hour', deleteCompanyBlockHour)
+
+  // scheduling
+  app.post('/scheduling', createScheduling)
 }
