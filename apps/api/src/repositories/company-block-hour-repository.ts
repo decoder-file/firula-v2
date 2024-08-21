@@ -9,4 +9,8 @@ export interface CompanyBlockHourRepository {
   ): Promise<CompanyBlockHour>
   delete(companyBlockHourId: string): Promise<boolean>
   listAll(): Promise<CompanyBlockHour[]>
+  getByDateRange(
+    companyBlockId: string,
+    date: Date,
+  ): Promise<CompanyBlockHour[]>
 }

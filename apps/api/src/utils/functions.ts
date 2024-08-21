@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const validateCPF = (cpf: string) => {
   let Soma = 0
   let Resto
@@ -102,4 +104,21 @@ export const createSlug = (text: string): string => {
     .trim()
     .replace(/\s+/g, '-')
     .toLowerCase()
+}
+
+const dayMapping: { [key: number]: string } = {
+  0: 'sunday',
+  1: 'monday',
+  2: 'tuesday',
+  3: 'wednesday',
+  4: 'thursday',
+  5: 'friday',
+  6: 'saturday',
+}
+
+// Função para obter o dia da semana correspondente
+export function getDayOfWeek(dateString: string) {
+  const date = moment(dateString)
+  const dayNumber = date.day()
+  return dayMapping[dayNumber]
 }

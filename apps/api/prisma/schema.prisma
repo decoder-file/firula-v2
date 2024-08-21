@@ -166,7 +166,7 @@ model CompanyOpeningHour {
 
 model CompanyBlockHour {
   id        String   @id @default(uuid())
-  date      DateTime
+  date      DateTime @default(now()) @db.Date
   startTime String
   endTime   String
   status    String   @default("busy")
@@ -181,7 +181,7 @@ model CompanyBlockHour {
 
 model Scheduling {
   id            String   @id @default(uuid())
-  date          DateTime
+  date          DateTime @default(now()) @db.Date
   status        String   @default("PENDING")
   paymentStatus String
 

@@ -2,8 +2,10 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
 import { CompanyNotFound } from '@/use-cases/errors/company/company-not-found'
+import { CompanyBlockHourNotAvailable } from '@/use-cases/errors/companyBlock/BlockHour/company-block-hour-not-available'
 import { CompanyBlockHourNotFound } from '@/use-cases/errors/companyBlock/BlockHour/company-block-hour-not-found'
 import { CompanyBlockNotFound } from '@/use-cases/errors/companyBlock/company-block-not-found'
+import { CompanyClosed } from '@/use-cases/errors/CompanyOpeningHour/company-closed'
 import { UserNotFound } from '@/use-cases/errors/users/user-not-found'
 import { makeCreateSchedulingUseCase } from '@/use-cases/factories/Scheduling/make-create-scheduling-use-case'
 
@@ -62,6 +64,14 @@ export async function createScheduling(
     }
 
     if (err instanceof CompanyBlockHourNotFound) {
+      return reply.status(409).send({ message: err.message })
+    }
+
+    if (err instanceof CompanyBlockHourNotAvailable) {
+      return reply.status(409).send({ message: err.message })
+    }
+
+    if (err instanceof CompanyClosed) {
       return reply.status(409).send({ message: err.message })
     }
 

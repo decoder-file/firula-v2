@@ -40,4 +40,16 @@ export class PrismaCompanyBlockHourRepository
   async listAll(): Promise<CompanyBlockHour[]> {
     return prisma.companyBlockHour.findMany()
   }
+
+  async getByDateRange(
+    companyBlockId: string,
+    date: Date,
+  ): Promise<CompanyBlockHour[]> {
+    return prisma.companyBlockHour.findMany({
+      where: {
+        companyBlockId,
+        date,
+      },
+    })
+  }
 }
