@@ -1,5 +1,7 @@
 import { FastifyInstance } from 'fastify'
 
+import { verifyJwt } from '../middlewares/verify-jwt'
+import { authentication } from './authentication/authentication.controller'
 import { createCompanyAddress } from './company/companyAddress/create-company-address.controller'
 import { deleteCompanyAddress } from './company/companyAddress/delete-company-address.controller'
 import { getCompanyAddress } from './company/companyAddress/get-company-address.controller'
@@ -43,11 +45,14 @@ import { getUserProfile } from './users/userProfile/get-user-profile.controller'
 import { updateUserProfile } from './users/userProfile/update-user-profile.controller'
 
 export async function appRoutes(app: FastifyInstance) {
+  // authentication
+  app.post('/sign-in', authentication)
+
   // user
   app.post('/users', createUser)
   app.patch('/users', updateUser)
   app.delete('/users', deleteUser)
-  app.get('/users', getUserByIdUser)
+  app.get('/users', { onRequest: [verifyJwt] }, getUserByIdUser)
   app.get('/users/all', getAllUsers)
   app.post('/users/change-lock', changeUserLockByIdUser)
 

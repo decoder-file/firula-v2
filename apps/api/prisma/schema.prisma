@@ -38,6 +38,7 @@ model User {
   UserAddress UserAddress[]
   Company     Company[]
   Scheduling  Scheduling[]
+  Member      Member[]
 
   @@map("users")
 }
@@ -97,6 +98,19 @@ model Company {
   CompanyAddress     CompanyAddress[]
   CompanyOpeningHour CompanyOpeningHour[]
   Scheduling         Scheduling[]
+  Member             Member[]
+}
+
+model Member {
+  id        String  @id @default(uuid())
+  role      Role    @default(CUSTOMER)
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String  @map("organization_id")
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String  @map("user_id")
+
+  @@unique([companyId, userId])
+  @@map("members")
 }
 
 model CompanyAddress {
