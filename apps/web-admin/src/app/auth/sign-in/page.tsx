@@ -1,12 +1,20 @@
+'use client'
+
 import { Label } from '@radix-ui/react-label'
 import Image from 'next/image'
-import React from 'react' // Add this line
+import { useRouter } from 'next/navigation'
+import React from 'react'
 
 import FirulaLogo from '@/assets/logo-green.png'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 export default function SignInPage() {
+  const router = useRouter()
+
+  const handleSignIn = () => {
+    router.push('/main/home')
+  }
   return (
     <form action="" className="space-y-4">
       <div className="flex justify-center">
@@ -22,7 +30,11 @@ export default function SignInPage() {
         <Input name="password" type="password" id="password" />
       </div>
 
-      <Button className="w-full bg-primary" type="submit">
+      <Button
+        className="w-full bg-primary"
+        type="submit"
+        onClick={handleSignIn}
+      >
         Entrar
       </Button>
     </form>

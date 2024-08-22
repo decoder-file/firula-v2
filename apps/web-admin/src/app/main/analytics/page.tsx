@@ -1,17 +1,6 @@
-import {
-  File,
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  PanelLeft,
-  ShoppingCart,
-  Users2,
-} from 'lucide-react'
-import Image from 'next/image'
+import { File } from 'lucide-react'
 import Link from 'next/link'
 
-import MockUserImg from '@/assets/mock-user.png'
 import { Badge } from '@/components/ui/badge'
 import {
   Breadcrumb,
@@ -28,13 +17,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import {
   Table,
   TableBody,
   TableCell,
@@ -44,121 +26,23 @@ import {
 } from '@/components/ui/table'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 
-export default function HomePage() {
+export default function AnalyticsPage() {
   return (
     <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
       <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button size="icon" variant="outline" className="sm:hidden">
-              <PanelLeft className="h-5 w-5" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="sm:max-w-xs">
-            <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href="#"
-                className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
-              >
-                <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                <span className="sr-only">Acme Inc</span>
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Home className="h-5 w-5" />
-                Dashboard
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-foreground"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                Orders
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Package className="h-5 w-5" />
-                Products
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Users2 className="h-5 w-5" />
-                Customers
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <LineChart className="h-5 w-5" />
-                Settings
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
         <Breadcrumb className="hidden md:flex">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href="#">Dashboard</Link>
+                <Link href="#">Analise</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         <div className="relative ml-auto flex-1 md:grow-0" />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="overflow-hidden rounded-full"
-            >
-              <Image
-                src={MockUserImg}
-                width={36}
-                height={36}
-                alt="Avatar"
-                className="overflow-hidden rounded-full"
-              />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>Sair</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </header>
       <main className=" w-full flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
         <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-            <Card x-chunk="dashboard-05-chunk-1">
-              <CardHeader className="pb-2">
-                <CardDescription>Quadras cadastras</CardDescription>
-                <CardTitle className="text-4xl">1,329</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xs text-muted-foreground">
-                  +25% do último mês
-                </div>
-              </CardContent>
-            </Card>
-            <Card x-chunk="dashboard-05-chunk-2">
-              <CardHeader className="pb-2">
-                <CardDescription>Clientes cadastrados</CardDescription>
-                <CardTitle className="text-4xl">15,329</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xs text-muted-foreground">
-                  +10% do último mês{' '}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
           <Tabs defaultValue="week">
             <div className="flex items-center">
               <div className="ml-auto flex items-center gap-2">
@@ -175,8 +59,10 @@ export default function HomePage() {
             <TabsContent value="week">
               <Card x-chunk="dashboard-05-chunk-3">
                 <CardHeader className="px-7">
-                  <CardTitle>Agendamentos</CardTitle>
-                  <CardDescription>Agendamentos realizados</CardDescription>
+                  <CardTitle>Clientes</CardTitle>
+                  <CardDescription>
+                    Clientes cadastras no Firula
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Table>

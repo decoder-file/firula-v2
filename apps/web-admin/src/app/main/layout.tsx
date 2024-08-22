@@ -1,5 +1,8 @@
+'use client'
+
 import { Home, LandPlot, LineChart, Settings, Users2 } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import {
   Tooltip,
@@ -9,9 +12,11 @@ import {
 
 export default function MainLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
+  const currentRoute = usePathname()
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -19,8 +24,9 @@ export default function MainLayout({
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="#"
-                className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+                href="/main/home"
+                className={`group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base 
+                ${currentRoute === '/main/home' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'}`}
               >
                 <Home className="h-4 w-4 transition-all group-hover:scale-110" />
                 <span className="sr-only">Home</span>
@@ -31,8 +37,9 @@ export default function MainLayout({
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                href="/main/block"
+                className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8
+                ${currentRoute === '/main/block' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               >
                 <LandPlot className="h-5 w-5" />
                 <span className="sr-only">Quadras</span>
@@ -43,8 +50,9 @@ export default function MainLayout({
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                href="/main/costumers"
+                className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8
+                ${currentRoute === '/main/costumers' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               >
                 <Users2 className="h-5 w-5" />
                 <span className="sr-only">Clientes</span>
@@ -55,8 +63,9 @@ export default function MainLayout({
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                href="/main/analytics"
+                className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8
+                ${currentRoute === '/main/analytics' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               >
                 <LineChart className="h-5 w-5" />
                 <span className="sr-only">Análise</span>
