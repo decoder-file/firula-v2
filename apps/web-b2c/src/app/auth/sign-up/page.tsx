@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react' // Add this line
 
 import FirulaLogo from '@/assets/logo-green.png'
@@ -73,12 +74,15 @@ export default function SignUnPage() {
         </form>
 
         <footer className="flex justify-center gap-1">
-          <Label className="text-sm font-semibold">
-            Já tem uma conta Firula?
-          </Label>
-          <a className="cursor-pointer text-sm font-semibold text-primary">
+          <Link
+            href="/auth/sign-in"
+            className="flex cursor-pointer gap-1 text-sm font-semibold text-primary"
+          >
+            <Label className="text-sm font-semibold text-white">
+              Já tem uma conta Firula?
+            </Label>
             Acessar conta
-          </a>
+          </Link>
         </footer>
       </div>
     </div>

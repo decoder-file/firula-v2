@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react' // Add this line
 
 import FirulaLogo from '@/assets/logo-green.png'
@@ -37,9 +38,12 @@ export default function SignInPage() {
             <Input name="password" type="password" id="password" />
 
             <div className="text-right">
-              <a className="cursor-pointer text-xs font-normal text-primary">
+              <Link
+                href="/auth/forgot-password"
+                className="cursor-pointer text-xs font-normal text-primary"
+              >
                 Esqueceu senha sua senha?
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -49,12 +53,16 @@ export default function SignInPage() {
         </form>
 
         <footer className="flex justify-center gap-1">
-          <Label className="text-sm font-semibold">
-            Não tem uma conta ainda?
-          </Label>
-          <a className="cursor-pointer text-sm font-semibold text-primary">
+          <Link
+            href="/auth/sign-up"
+            className="flex cursor-pointer gap-1 text-sm font-semibold text-primary"
+          >
+            <Label className="text-sm font-semibold text-white">
+              Não tem uma conta ainda?
+            </Label>
             Inscrever-se
-          </a>
+          </Link>
+          <a></a>
         </footer>
       </div>
     </div>
