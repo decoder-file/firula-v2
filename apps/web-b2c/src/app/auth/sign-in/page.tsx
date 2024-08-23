@@ -19,10 +19,10 @@ export default function SignInPage() {
             className="w-20 md:hidden"
           />
           <h1 className="text-2xl font-semibold tracking-tight">
-            Acessar painel
+            Acessar Firula
           </h1>
           <p className="text-sm text-muted-foreground">
-            Gerencie suas quadras e clientes de forma fácil e rápida.
+            Faça suas reservas de quadras de forma fácil e rápida.
           </p>
         </div>
 

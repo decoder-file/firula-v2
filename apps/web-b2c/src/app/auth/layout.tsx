@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import LogoFull from '@/assets/logo-full.png'
+import LogoFull from '@/assets/logo-escrita-preta.png'
 
 export default function AuthLayout({
   children,
@@ -10,7 +10,7 @@ export default function AuthLayout({
   return (
     <div className="flex h-screen items-center justify-between">
       <div className="flex h-screen w-full items-center justify-center bg-primary max-md:hidden">
-        <Image src={LogoFull} alt="Logo Firula" className="w-60" />
+        <Image src={LogoFull} alt="Logo Firula" className="w-80" />
       </div>
 
       <div className="flex h-full w-full items-center p-5 text-lg text-foreground">
