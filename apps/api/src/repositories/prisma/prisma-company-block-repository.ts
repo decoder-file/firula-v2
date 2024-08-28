@@ -49,4 +49,8 @@ export class PrismaCompanyBlockRepository implements CompanyBlockRepository {
       },
     })
   }
+
+  async countBlocks() {
+    return prisma.companyBlock.count()
+  }
 }

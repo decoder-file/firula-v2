@@ -30,6 +30,7 @@ import { getTypeByIdBlock } from './company/typeBlock/get-type-block-by-id.contr
 import { updateTypeBlock } from './company/typeBlock/update-type-block.controller'
 import { updateCompany } from './company/update-company.controller'
 import { createScheduling } from './scheduling/create-scheduling.controller'
+import { getStatistic } from './statistic/get-statistic.controller'
 import { changeUserLockByIdUser } from './users/change-user-lock.controller'
 import { createUser } from './users/create-user.controller'
 import { deleteUser } from './users/delete-user.controller'
@@ -108,4 +109,7 @@ export async function appRoutes(app: FastifyInstance) {
 
   // scheduling
   app.post('/scheduling', createScheduling)
+
+  // statistics
+  app.get('/statistic', getStatistic)
 }

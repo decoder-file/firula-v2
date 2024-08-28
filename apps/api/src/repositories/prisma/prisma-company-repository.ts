@@ -73,4 +73,8 @@ export class PrismaCompanyRepository implements CompanyRepository {
       },
     })
   }
+
+  async countCompanies() {
+    return prisma.company.count()
+  }
 }

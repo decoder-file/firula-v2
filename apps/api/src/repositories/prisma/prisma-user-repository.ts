@@ -90,4 +90,12 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return users
   }
+
+  async countCostumers() {
+    return prisma.user.count({
+      where: {
+        role: 'CUSTOMER',
+      },
+    })
+  }
 }

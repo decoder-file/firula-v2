@@ -20,14 +20,10 @@ export async function authentication(
   try {
     const authenticationUseCase = makeAuthenticationUseCase()
 
-    const { user } = await authenticationUseCase.execute({
+    const { user, company } = await authenticationUseCase.execute({
       email,
       password,
     })
-
-    const userId = await request.getCurrentUserId()
-
-    console.log('##########', userId)
 
     const token = await reply.jwtSign(
       {
@@ -40,12 +36,20 @@ export async function authentication(
       },
     )
 
-    const userWithoutPassword = {
+    const userInfo = {
       ...user,
       passwordHash: undefined,
     }
 
-    return reply.status(201).send({ token, userWithoutPassword })
+    const companyInfo = company.map((company) => ({
+      name: company.name,
+      id: company.id,
+      image: company.imageUrl,
+    }))
+
+    return reply
+      .status(201)
+      .send({ token, user: userInfo, company: companyInfo })
   } catch (err) {
     if (err instanceof UserNotFound) {
       return reply.status(409).send({ message: err.message })

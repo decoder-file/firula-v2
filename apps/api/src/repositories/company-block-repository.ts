@@ -13,4 +13,5 @@ export interface CompanyBlockRepository {
     activeCompanyBlocks?: string,
   ): Promise<CompanyBlock[]>
   findBlockByCompanyId(companyId: string): Promise<CompanyBlock[] | null>
+  countBlocks(): Promise<number>
 }

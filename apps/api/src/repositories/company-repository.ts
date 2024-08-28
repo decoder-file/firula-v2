@@ -10,4 +10,5 @@ export interface CompanyRepository {
     activeCompanies?: string,
   ): Promise<Company[]>
   findByUserId(userId: string): Promise<Company[]>
+  countCompanies(): Promise<number>
 }

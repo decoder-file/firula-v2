@@ -9,4 +9,5 @@ export interface UsersRepository {
   delete(userId: string): Promise<boolean>
   getUserById(userId: string): Promise<User | null>
   getAllUsers(): Promise<User[]>
+  countCostumers(): Promise<number>
 }
