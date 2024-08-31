@@ -12,14 +12,18 @@ export async function getAllCompany(
     const getAllCompanyQuerySchema = z.object({
       unblockedCompanies: z.string().optional(),
       activeCompanies: z.string().optional(),
+      page: z.string(),
+      nameQuery: z.string().optional(),
     })
 
-    const { unblockedCompanies, activeCompanies } =
+    const { unblockedCompanies, activeCompanies, page, nameQuery } =
       getAllCompanyQuerySchema.parse(request.query)
 
     const getCompanyUseCase = makeGetAllCompanyUseCase()
 
     const { company } = await getCompanyUseCase.execute({
+      page: parseInt(page, 10),
+      nameQuery,
       unblockedCompanies,
       activeCompanies,
     })

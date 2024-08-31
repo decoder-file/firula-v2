@@ -38,32 +38,34 @@ export class PrismaCompanyRepository implements CompanyRepository {
     })
   }
 
-  async listAll(unblockedCompanies?: string, activeCompanies?: string) {
-    if (unblockedCompanies) {
+  async listAll(
+    page: number,
+    nameQuery?: string,
+    unblockedCompanies?: boolean,
+    activeCompanies?: boolean,
+  ) {
+    if (nameQuery) {
       return prisma.company.findMany({
         where: {
-          isBlock: false,
+          slug: {
+            contains: nameQuery,
+          },
+          isActive: activeCompanies ? true : undefined,
+          isBlock: unblockedCompanies ? true : undefined,
         },
+        take: 10,
+        skip: (page - 1) * 10,
       })
     }
 
-    if (activeCompanies) {
-      return prisma.company.findMany({
-        where: {
-          isActive: true,
-        },
-      })
-    }
-
-    if (unblockedCompanies && activeCompanies) {
-      return prisma.company.findMany({
-        where: {
-          isBlock: false,
-          isActive: true,
-        },
-      })
-    }
-    return prisma.company.findMany()
+    return prisma.company.findMany({
+      where: {
+        isActive: activeCompanies ? true : undefined,
+        isBlock: unblockedCompanies ? true : undefined,
+      },
+      take: 10,
+      skip: (page - 1) * 10,
+    })
   }
 
   async findByUserId(userId: string) {
