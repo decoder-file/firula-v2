@@ -12,6 +12,7 @@ import { getAllCompanyBlockHour } from './company/companyBlock/blockHour/get-all
 import { getByDateCompanyBlockHour } from './company/companyBlock/blockHour/get-by-date-company-block-hour.controller'
 import { createCompanyBlock } from './company/companyBlock/create-company-block.controller'
 import { deleteCompanyBlock } from './company/companyBlock/delete-company-block.controller'
+import { getAllCompanyBlock } from './company/companyBlock/get-all-company-block.controller'
 import { getCompanyBlockById } from './company/companyBlock/get-company-block.controller'
 import { getCompanyBlockByCompanyId } from './company/companyBlock/get-company-block-by-company-id.controller'
 import { updateCompanyBlock } from './company/companyBlock/update-company-block.controller'
@@ -94,6 +95,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.get('/company-block', getCompanyBlockById)
   app.delete('/company-block', deleteCompanyBlock)
   app.get('/company-block/companyId', getCompanyBlockByCompanyId)
+  app.get('/company-block/all', getAllCompanyBlock)
 
   // companyOpeningHour
   app.post('/company-opening-hour', createCompanyOpeningHour)

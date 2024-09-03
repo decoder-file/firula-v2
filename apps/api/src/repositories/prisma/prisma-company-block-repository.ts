@@ -38,8 +38,27 @@ export class PrismaCompanyBlockRepository implements CompanyBlockRepository {
     return true
   }
 
-  async listAll() {
-    return prisma.companyBlock.findMany()
+  async listAll(page: number, nameQuery?: string, activeBlocks?: boolean) {
+    if (nameQuery) {
+      return prisma.companyBlock.findMany({
+        where: {
+          name: {
+            contains: nameQuery,
+          },
+          isActive: activeBlocks ? true : undefined,
+        },
+        take: 10,
+        skip: (page - 1) * 10,
+      })
+    }
+
+    return prisma.companyBlock.findMany({
+      where: {
+        isActive: activeBlocks ? true : undefined,
+      },
+      take: 10,
+      skip: (page - 1) * 10,
+    })
   }
 
   async findBlockByCompanyId(companyId: string) {

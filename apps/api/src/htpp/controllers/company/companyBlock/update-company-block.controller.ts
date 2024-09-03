@@ -10,10 +10,10 @@ export async function updateCompanyBlock(
   reply: FastifyReply,
 ) {
   const createCompanyBlockBodySchema = z.object({
-    name: z.string(),
-    valueForHour: z.string(),
+    name: z.string().optional(),
+    valueForHour: z.string().optional(),
     imageUrl: z.string().optional(),
-    typeBlockId: z.string(),
+    typeBlockId: z.string().optional(),
     isActive: z.boolean().optional(),
   })
 

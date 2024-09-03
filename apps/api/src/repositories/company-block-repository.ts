@@ -9,8 +9,9 @@ export interface CompanyBlockRepository {
   ): Promise<CompanyBlock>
   delete(companyBlockId: string): Promise<boolean>
   listAll(
-    unblockedCompanyBlocks?: string,
-    activeCompanyBlocks?: string,
+    page: number,
+    nameQuery?: string,
+    boolean?: boolean,
   ): Promise<CompanyBlock[]>
   findBlockByCompanyId(companyId: string): Promise<CompanyBlock[] | null>
   countBlocks(): Promise<number>
